@@ -18,6 +18,10 @@ a {
   @apply text-accent
 }
 
+h1 {
+  @apply text-hard text-4xl
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
