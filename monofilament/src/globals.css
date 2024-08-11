@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply m-0 p-0 bg-hard text-soft no-scrollbar
+}
+
+#root {
+  @apply m-0 p-0
+}
+
+div {
+  @apply no-scrollbar rounded-lg m-2
+}
+
+a {
+  @apply text-accent
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: 0px; /* Firefox */
+}
+
+.woozy-bg {
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255, 0.5), rgba(255,255,255, 0.5) 5px, transparent 0px, transparent 12px);
+}
+
+@font-face {
+  font-family: 'Redjola';
+  src: url('../public/fonts/Redjola.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
