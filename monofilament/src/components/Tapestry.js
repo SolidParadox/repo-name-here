@@ -23,21 +23,28 @@ export default function Tapestry () {
   }, [ ])
 
   return ( 
-    <div className="relative w-fit h-max mx-auto bg-middle text-hard p-10 overflow-scroll">
+    <div className="relative w-auto h-max mx-auto bg-middle text-hard p-10 flex flex-row flex-wrap items-start">
       { photoInfo.length > 0 ? (  
         photoInfo.map ( ( data, index ) => (
-          <div key={index} className="relative mb-16 rounded-sm my-2 mx-auto">
-            <SIV className="z-20 absolute text-soft -top-10 left-0 bg-hard w-3/4 text-2xl p-2">
+          <div key={index} className="duration-300 group relative w-max min-w-64 min-h-64 rounded-sm my-10 mx-2 bg-accent">
+            <SIV className="z-20 absolute text-soft -top-10 left-0 bg-hard w-3/4 text-4xl p-2">
               { data.name }
             </SIV>
             <SIV className="max-w-4/3">
               <DBI className="overflow-hidden rounded-lg" entryId={data.id} /> 
             </SIV>
             <div className="z-20 absolute -bottom-10 w-full">
-              <SIV className="text-center mx-auto text-soft bg-hard text-sm w-3/4 p-2">
+              { data.link &&
+              <SIV className="text-center mx-auto text-soft bg-hard text-base w-3/4 p-2">
                 <a href={data.link}> { data.link } </a>
               </SIV>
+              }
             </div>
+            { data.description &&
+            <div className="duration-300 absolute z-10 top-0 left-0 group-hover:opacity-75 opacity-0 h-full w-full text-soft bg-hard text-xl m-0 p-10">
+              { data.description }
+            </div>
+            }
           </div>
         )) 
         ) : ( 

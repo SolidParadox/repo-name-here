@@ -43,6 +43,7 @@ export class EntriesService {
   async create(createEntryDto: CreateEntryDto): Promise<Entry> {
     const newEntry = this.entryRepo.create({
       name: createEntryDto.name,
+      description: createEntryDto.description,
       public: createEntryDto.public,
       link: createEntryDto.link,
       photo: createEntryDto.photo, // Save Base64 string directly

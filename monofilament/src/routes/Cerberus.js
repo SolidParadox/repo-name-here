@@ -1,7 +1,5 @@
-import logo from '../logo.svg';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-import { motion } from "framer-motion";
 import InputModule from '../components/InputModule';
 import Notice from '../components/Notice';
 

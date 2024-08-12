@@ -5,6 +5,7 @@ services:
     image: postgres:13
     volumes:
       - db-data-cursed:/var/lib/postgresql/data
+      - ./init.psql:/docker-entrypoint-initdb.d/init.psql
     environment:
       POSTGRES_DB: raptor
       POSTGRES_USER: postgres
@@ -16,5 +17,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
 volumes:
   db-data-cursed:

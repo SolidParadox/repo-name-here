@@ -4,13 +4,15 @@ export class CreateEntryDto {
   @IsString()
   @IsNotEmpty()
   name: string;
+  
+  @IsString()
+  description: string;
 
   @IsBoolean()
   @IsNotEmpty()
   public: boolean;
 
   @IsString()
-  @IsNotEmpty()
   link: string;
   
   @IsString()

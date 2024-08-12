@@ -1,10 +1,6 @@
-import logo from '../logo.svg';
 import { motion } from "framer-motion";
 
-import ImageCard from '../components/ImageCard'
-
 import SIV from '../components/SIV'
-import DBI from '../components/DBI'
 
 import Tapestry from '../components/Tapestry'
 import Carpet from '../components/Carpet'
@@ -54,12 +50,13 @@ function Landing() {
           </a> }
         </div>
       </div> 
-      <div className="duration-300 snap-center snap-always my-[2dvh] mx-auto overflow-y-scroll w-dvw lg:w-1/2 h-max min-h-semi">
+      <div className="duration-300 snap-center snap-always my-[2dvh] mx-auto overflow-y-scroll overflow-x-hidden w-dvw lg:w-1/2 h-max min-h-semi">
           <div id="photoAnchor" className="rounded-xl bg-middle text-hard text-2xl p-2 min-h-dvh">
             <SIV> 
              <div> Here be photos </div>
             </SIV>
             <Carpet />
+            <Tapestry />
           </div>
       </div>
       <div className="snap-end pb-2 m-0 p-0 w-screen mx-auto">

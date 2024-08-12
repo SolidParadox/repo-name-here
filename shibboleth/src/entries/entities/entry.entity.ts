@@ -7,6 +7,9 @@ export class Entry {
 
   @Column({ type: 'text' })
   name: string;
+  
+  @Column({ type: 'text' })
+  description: string;
 
   @Column({ type: 'boolean' })
   public: boolean;
