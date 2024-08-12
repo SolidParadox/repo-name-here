@@ -2,7 +2,12 @@ import logo from '../logo.svg';
 import { motion } from "framer-motion";
 
 import ImageCard from '../components/ImageCard'
+
 import SIV from '../components/SIV'
+import DBI from '../components/DBI'
+
+import Tapestry from '../components/Tapestry'
+import Carpet from '../components/Carpet'
 
 function Landing() {
   return (
@@ -29,9 +34,10 @@ function Landing() {
             <SIV> 
              <div> Here be photos </div>
             </SIV>
+            <Carpet />
           </div>
       </div>
-      <div className="snap-end mx-semi pb-2 m-0 p-0 w-semi">
+      <div className="snap-end pb-2 m-0 p-0 w-dvw mx-auto">
         <div className="mb-5 bg-soft text-hard px-10 py-2 w-semi">
           Footer - Made by <a href="https://github.com/SolidParadox"> Paradox </a>
         </div>
