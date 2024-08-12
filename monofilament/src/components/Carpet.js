@@ -13,7 +13,7 @@ export default function Carpet () {
           const photoData = await response.text(); // Receive the Base64 string
           setPhotoInfo( JSON.parse ( photoData ) );
         } else {
-          console.error('Error fetching photo');
+          console.error('Error fetching photo data');
         }
       } catch (error) {
         console.error('Error:', error);
@@ -27,12 +27,12 @@ export default function Carpet () {
       { photoInfo.length > 0 ? (  
         photoInfo.map ( ( data, index ) => (
           <div key={index} className="relative h-fit min-h-32 w-full rounded-sm my-2 mx-auto flex flex-row items-center justify-center">
-            <div className="duration-300 w-1/5 rounded-lg hover:w-2/5">
-              <SIV className="hover:z-[50]">
-                <DBI entryId={data.id} /> 
+            <div className="duration-300 w-1/5 rounded-lg hover:w-2/5 m-0 p-0">
+              <SIV className="hover:z-[50] m-0 p-0">
+                <DBI className="m-0 p-0" entryId={data.id} /> 
               </SIV>
             </div>
-            <SIV className="z-20 text-hard grow text-xl ml-10">
+            <SIV className="z-20 text-hard grow text-xl">
               <div className="p-2"> { data.name } </div>
               <hr className="my-2 bg-accent" />
               <a className="text-center mx-auto text-base p-2" href={data.link}> { data.link } </a>

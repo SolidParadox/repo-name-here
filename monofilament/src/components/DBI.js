@@ -23,8 +23,8 @@ const DBI = ({ entryId, className }) => {
 
   return (
     <div className={className}>
-      {photoUrl && <img src={photoUrl} alt="Photo" />} {/* Use the Base64 data URL */}
-      {!photoUrl && <div className> Loading... </div>} {/* Use the Base64 data URL */}
+      {photoUrl && <img className="mx-auto" src={photoUrl} alt="Photo" />} {/* Use the Base64 data URL */}
+      {!photoUrl && <div> Loading... </div>} {/* Use the Base64 data URL */}
     </div>
   );
 };

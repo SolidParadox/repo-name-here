@@ -2,7 +2,8 @@ import logo from '../logo.svg';
 import React, { useState, useEffect } from 'react';
 
 import { motion } from "framer-motion";
-import InputModule from '../components/InputModule'
+import InputModule from '../components/InputModule';
+import Notice from '../components/Notice';
 
 function Cerberus() {
   const [key, setKey] = useState('');
@@ -25,9 +26,10 @@ function Cerberus() {
         return response.json();
       })
       .then(result => {
-        setStatus ( "Yiipee" );
+        setStatus ( result ? "Sacrifice accepted" : "Begone, mortal" );
       })
       .catch(() => {
+        setStatus ( "EEEEK, Error" );
       });
   };
   
@@ -36,10 +38,12 @@ function Cerberus() {
       <div className="text-soft py-10 px-5 text-[11dvw] font-custom text-center"> 
         API SACRIFICE
       </div>
-      <form onSubmit={handleSubmit} className="w-max">
-        <InputModule label="API SACRIFICE" type="text" id="key" value={key} onChange={handleChange} />
-        <button className="relative mx-auto p-2 border-2 border-accent m-2" type="submit">Please the gods</button>
+      <form onSubmit={handleSubmit} className="w-max flex flex-col items-center justify-center">
+        <InputModule label="API SACRIFICE" type="password" id="key" value={key} onChange={handleChange} />
+        <button className="relative p-2 border-2 border-accent m-2" type="submit">Please the gods</button>
       </form>
+      <button className={`duration-300 ${ status === '' ? 'opacity-0' : 'opacity-1' }`} onClick={ () => { window.location.href = "http://localhost:3005";  } }> Home </button>
+      <Notice message={status} /> 
     </div>
   );
 }

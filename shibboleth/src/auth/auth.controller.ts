@@ -12,7 +12,7 @@ export class AuthController {
   @Post()
   async saveAPI(@Body() createApiKeyDto: CreateApiKeyDto, @Req() req: Request, @Res() res: Response) {
     req.session.apiKey = createApiKeyDto.apiKey;
-    return res.status(HttpStatus.OK).json({ message: 'API key saved successfully' });
+    return res.status(HttpStatus.OK).json( this.apiKeyService.isAdmin( req ) );
   }
   
   @Get()

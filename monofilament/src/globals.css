@@ -26,6 +26,14 @@ button {
   @apply text-soft border-2 border-accent bg-hard p-2 px-4 m-2 rounded-lg
 }
 
+input {
+  @apply w-full p-2 bg-hard text-soft
+}
+
+input:-internal-autofill-selected {
+  @apply w-full p-2 bg-hard text-soft
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

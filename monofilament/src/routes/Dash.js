@@ -2,7 +2,8 @@ import logo from '../logo.svg';
 import React, { useState, useEffect } from 'react';
 
 import { motion } from "framer-motion";
-import InputModule from '../components/InputModule'
+import InputModule from '../components/InputModule';
+import Notice from '../components/Notice';
 
 function Dash() {
   // Should make stuff to make this into a modifiable form
@@ -18,22 +19,22 @@ function Dash() {
   const handleLinkChange = (e) => { setError ( '' ); setLink(e.target.value); }
   const handlePhotoChange = (e) => { setError ( '' ); setPhoto(e.target.files[0]); }
   
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!name || !link) {
-      setError ( "NAME AND LINK REQUIRED");
+      setError("NAME AND LINK REQUIRED");
       return;
     }
-    
+
     const reader = new FileReader();
 
-    reader.onloadend = async () => {
+    reader.onloadend = () => {
       const base64Photo = reader.result.split(',')[1]; // Remove the data URL prefix
 
       // Ensure photo is defined as a string
       if (!base64Photo) {
-        setError ( "PHOTO MISSING");
+        setError("PHOTO MISSING");
         return;
       }
 
@@ -44,40 +45,42 @@ function Dash() {
         photo: base64Photo // Ensure this is a Base64 encoded string
       };
 
-      try {
-        const response = await fetch('http://localhost:3005/entries', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
+      fetch('http://localhost:3005/entries', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(response => {
+          if (!response.ok) {
+            setError("NETWORK ERROR");
+            return Promise.reject(new Error('Network response was not ok'));
+          }
+          return response.json(); // Parse JSON data from the response
+        })
+        .then(result => {
+          // Handle successful result if needed
+          console.log ("ADDITION");
+          setError("ADDITION SUCCESSFUL");
+        })
+        .catch(error => {
+          // Handle errors (e.g., network issues, JSON parsing issues)
+          setError("DATABASE ERROR");
+          console.error('Fetch error:', error);
         });
-
-        if (!response.ok) {
-          setError ( "NETWORK ERROR");
-          throw new Error('Network response was not ok');
-        }
-
-        const result = await response.json();
-      } catch (error) {
-        setError ( "DATABASE ERROR");
-      }
     };
 
     if (photo) {
       reader.readAsDataURL(photo); // Convert file to Base64
     } else {
-        setError ( "PHOTO REQUIRED" );      
+      setError("PHOTO REQUIRED");
     }
   };
 
   return (
-    <div className="relative w-semi h-semi mx-semi bg-middle text-hard p-10 overflow-hidden">
+    <div className="relative w-semi h-semi mx-semi bg-middle text-hard p-10 overflow-scroll">
   
-      <div className={`absolute left-0 m-0 w-dvw h-32 duration-300 ${ error == '' ? '-bottom-32 opacity-0' : 'bottom-0 opacity-1' }`}>
-        <div className="mx-auto w-1/2 text-center text-xl h-16 bg-red-600 border-2 border-black rounded-lg"> {error} </div>
-      </div>
-          
       <h1> Add your photo here V4 </h1>
     
       <form onSubmit={handleSubmit}>
@@ -93,6 +96,8 @@ function Dash() {
       <button className="mx-auto p-2 border-2 border-accent m-2" type="submit">Submit</button>
         
       </form>
+      
+      <Notice message={error} /> 
       
     </div>
   );

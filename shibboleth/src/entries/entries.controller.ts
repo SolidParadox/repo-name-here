@@ -24,7 +24,7 @@ export class EntriesController {
       });
     }
     
-    return this.entriesService.create(createEntryDto);
+    return res.status(HttpStatus.OK).json( this.entriesService.create(createEntryDto) );
   }
 
   @Get()
@@ -64,7 +64,7 @@ export class EntriesController {
       });
     }
     
-    return this.entriesService.remove(id);
+    return res.status(HttpStatus.OK).json( this.entriesService.remove(id) );
   }
   
   @Get(':id/photo')
