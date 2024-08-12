@@ -2,10 +2,11 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:13
+    build:
+      context: . 
+      dockerfile: Dockerfile
     volumes:
       - db-data-cursed:/var/lib/postgresql/data
-      - ./init.psql:/docker-entrypoint-initdb.d/init.psql
     environment:
       POSTGRES_DB: raptor
       POSTGRES_USER: postgres
